@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 // so the build needs a basePath/assetPrefix — but only for that deployment,
 // never for local dev or `next start`.
 const isGithubActions = process.env.GITHUB_ACTIONS === "true";
-const repoName = "barbunker";
+const repoName = "bunker";
 const basePath = isGithubActions ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
