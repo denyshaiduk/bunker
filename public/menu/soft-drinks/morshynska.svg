@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536">
+  <defs>
+    <radialGradient id="bgMor" cx="50%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#131b20"/>
+      <stop offset="100%" stop-color="#070a0c"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#bgMor)"/>
+  <g opacity="0.5" stroke="#B67A2B" stroke-width="2">
+    <circle cx="512" cy="640" r="230"/>
+    <circle cx="512" cy="640" r="270"/>
+  </g>
+  <g transform="translate(512,700)">
+    <path d="M -90 -240 L -90 -180 L -120 -140 L -120 220 Q -120 250 -90 250 L 90 250 Q 120 250 120 220 L 120 -140 L 90 -180 L 90 -240 Z" fill="#0f1a1f" stroke="#B67A2B" stroke-width="4" opacity="0.9"/>
+    <path d="M -112 -60 L -112 220 Q -112 236 -92 236 L 92 236 Q 112 236 112 220 L 112 -60 Z" fill="#3d6e78" opacity="0.4"/>
+    <rect x="-90" y="-240" width="180" height="18" fill="none" stroke="#B67A2B" stroke-width="4"/>
+    <circle cx="-30" cy="20" r="5" fill="#bfe3ea" opacity="0.7"/>
+    <circle cx="20" cy="80" r="4" fill="#bfe3ea" opacity="0.6"/>
+    <circle cx="-10" cy="140" r="5" fill="#bfe3ea" opacity="0.6"/>
+  </g>
+  <text x="50%" y="1180" text-anchor="middle" font-family="Georgia, serif" font-size="58" fill="#E7C99A" letter-spacing="2">Моршинська</text>
+  <text x="50%" y="1230" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#E7C99A" opacity="0.85" letter-spacing="2">0,3 л</text>
+  <text x="50%" y="1280" text-anchor="middle" font-family="Georgia, serif" font-size="26" fill="#B67A2B" opacity="0.7" letter-spacing="6">BUNKER SOFT</text>
+</svg>

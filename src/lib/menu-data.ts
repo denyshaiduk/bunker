@@ -235,7 +235,7 @@ export const menuCategories: MenuCategory[] = [
   {
     slug: "soft-drinks",
     title: "Безалкогольні напої",
-    subtitle: "Кола 0,25 л / 0,3 л · Спрайт 0,3 л",
+    subtitle: "Кола 0,25 л / 0,3 л · Спрайт · Мохіто б/а · Моршинська",
     items: [
       {
         title: "Кола",
@@ -250,6 +250,25 @@ export const menuCategories: MenuCategory[] = [
         ],
       },
       { title: "Спрайт", image: "/menu/soft-drinks/sprite.svg", width: 1024, height: 1536, price: 70 },
+      { title: "Мохіто безалкогольне", image: "/menu/soft-drinks/virgin-mojito.svg", width: 1024, height: 1536, price: 90 },
+      {
+        title: "Мохіто полуничне безалкогольне",
+        image: "/menu/soft-drinks/virgin-strawberry-mojito.svg",
+        width: 1024,
+        height: 1536,
+        price: 110,
+      },
+      {
+        title: "Моршинська",
+        image: "/menu/soft-drinks/morshynska.svg",
+        width: 1024,
+        height: 1536,
+        price: 50,
+        pours: [
+          { name: "Моршинська слабогазована", volume: "0,3 л", price: 50 },
+          { name: "Моршинська негазована", volume: "0,3 л", price: 50 },
+        ],
+      },
     ],
   },
   {
