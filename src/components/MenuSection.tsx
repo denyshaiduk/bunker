@@ -1,15 +1,36 @@
 "use client";
 
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { menuCategories } from "@/lib/menu-data";
 import { MenuCard } from "./MenuCard";
+import { MenuCategoryGrid } from "./MenuCategoryGrid";
 import { MenuLightbox } from "./MenuLightbox";
 import { Reveal } from "./Reveal";
 
 export function MenuSection() {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeItem, setActiveItem] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (activeCategory === null) return;
+    const previousOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.documentElement.style.overflow = previousOverflow;
+    };
+  }, [activeCategory]);
+
+  useEffect(() => {
+    if (activeCategory === null) return;
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      if (activeItem !== null) setActiveItem(null);
+      else setActiveCategory(null);
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeCategory, activeItem]);
 
   return (
     <section id="menu" className="relative px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-24 lg:py-28">
@@ -29,7 +50,7 @@ export function MenuSection() {
               category={category}
               onOpen={() => {
                 setActiveCategory(i);
-                setActiveItem(0);
+                setActiveItem(null);
               }}
             />
           </Reveal>
@@ -37,12 +58,22 @@ export function MenuSection() {
       </div>
 
       <AnimatePresence>
-        {activeCategory !== null && (
+        {activeCategory !== null && activeItem === null && (
+          <MenuCategoryGrid
+            category={menuCategories[activeCategory]}
+            onSelectItem={setActiveItem}
+            onClose={() => setActiveCategory(null)}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {activeCategory !== null && activeItem !== null && (
           <MenuLightbox
             category={menuCategories[activeCategory]}
             index={activeItem}
             onIndexChange={setActiveItem}
-            onClose={() => setActiveCategory(null)}
+            onClose={() => setActiveItem(null)}
           />
         )}
       </AnimatePresence>

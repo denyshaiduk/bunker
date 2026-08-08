@@ -2,8 +2,8 @@
 
 import { AnimatePresence, motion, type PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useCallback, useState } from "react";
-import type { MenuCategory } from "@/lib/menu-data";
+import { useCallback, useEffect, useState } from "react";
+import { formatPrice, type MenuCategory } from "@/lib/menu-data";
 import { ZoomableImage } from "./ZoomableImage";
 
 interface MenuLightboxProps {
@@ -25,6 +25,16 @@ export function MenuLightbox({ category, index, onIndexChange, onClose }: MenuLi
     },
     [index, items.length, onIndexChange]
   );
+
+  useEffect(() => {
+    if (items.length < 2) return;
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "ArrowLeft") go(-1);
+      else if (event.key === "ArrowRight") go(1);
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [go, items.length]);
 
   function handleDragEnd(_: unknown, info: PanInfo) {
     if (zoomed) return;
@@ -96,8 +106,8 @@ export function MenuLightbox({ category, index, onIndexChange, onClose }: MenuLi
 
       <div className="px-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-3 text-center">
         <h3 className="font-display text-gradient-bronze text-xl">{item.title}</h3>
-        <p className="mt-1 text-[11px] uppercase tracking-[0.35em] text-bone/40">
-          {category.subtitle}
+        <p className="mt-1.5 inline-block rounded-full border border-bronze-light/50 bg-bunker-900/70 px-3.5 py-1 text-sm font-semibold text-bronze-light">
+          {formatPrice(item)}
         </p>
       </div>
     </motion.div>

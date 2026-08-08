@@ -18,7 +18,7 @@ export function AtmosphereGallery() {
     <section className="relative px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-24 lg:py-28">
       <Reveal className="mx-auto mb-10 max-w-xl text-center sm:mb-12 md:mb-14">
         <span className="font-body text-[11px] uppercase tracking-[0.5em] text-bronze-light/70">
-          Всередині об'єкта
+          Всередині об&apos;єкта
         </span>
         <h2 className="font-serif-display text-gradient-bronze mt-3 text-[clamp(2.25rem,7vw,3.75rem)]">
           Атмосфера

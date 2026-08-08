@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { withBasePath } from "@/lib/base-path";
-import type { MenuCategory } from "@/lib/menu-data";
+import { categoryMinPrice, formatPrice, type MenuCategory } from "@/lib/menu-data";
 
 interface MenuCardProps {
   category: MenuCategory;
@@ -13,6 +13,8 @@ interface MenuCardProps {
 export function MenuCard({ category, onOpen }: MenuCardProps) {
   const cover = category.items[0];
   const aspectRatio = cover.width / cover.height;
+  const minPrice = categoryMinPrice(category);
+  const priceFrom = category.items.length > 1 || cover.priceFrom;
 
   return (
     <motion.button
@@ -48,8 +50,8 @@ export function MenuCard({ category, onOpen }: MenuCardProps) {
           <h3 className="font-display truncate text-lg text-bone">{category.title}</h3>
           <p className="truncate text-xs text-bone/50">{category.subtitle}</p>
         </div>
-        <span className="shrink-0 text-[10px] uppercase tracking-[0.3em] text-bronze-light/70">
-          Відкрити
+        <span className="shrink-0 rounded-full border border-bronze-light/50 bg-bunker-900/70 px-3 py-1 text-xs font-semibold text-bronze-light">
+          {priceFrom ? `від ${minPrice} ₴` : formatPrice({ price: minPrice })}
         </span>
       </div>
     </motion.button>
