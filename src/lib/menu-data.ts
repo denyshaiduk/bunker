@@ -1,3 +1,12 @@
+export interface Pour {
+  /** Brand / label as printed on the artboard */
+  name: string;
+  /** Serving size, e.g. "50 мл" */
+  volume: string;
+  /** Price in UAH for this exact pour */
+  price: number;
+}
+
 export interface MenuItem {
   /** Name shown under the artwork inside the lightbox */
   title: string;
@@ -9,6 +18,8 @@ export interface MenuItem {
   price: number;
   /** Set for selection boards where the price is a starting price */
   priceFrom?: boolean;
+  /** Per-brand pours shown on a selection artboard, each with its own price */
+  pours?: Pour[];
 }
 
 export interface MenuCategory {
@@ -16,6 +27,8 @@ export interface MenuCategory {
   title: string;
   subtitle: string;
   items: MenuItem[];
+  /** Section not served yet — shown greyed out with a "coming soon" ribbon */
+  comingSoon?: boolean;
 }
 
 function aspect(width: number, height: number) {
@@ -66,8 +79,14 @@ export const menuCategories: MenuCategory[] = [
         image: "/menu/whiskey/whiskey-selection.webp",
         width: 1122,
         height: 1402,
-        price: 180,
+        price: 140,
         priceFrom: true,
+        pours: [
+          { name: "Johnnie Walker Red Label", volume: "50 мл", price: 150 },
+          { name: "White Horse", volume: "50 мл", price: 140 },
+          { name: "Jack Daniel's", volume: "50 мл", price: 190 },
+          { name: "Jack Daniel's Blackberry", volume: "50 мл", price: 200 },
+        ],
       },
     ],
   },
@@ -81,8 +100,15 @@ export const menuCategories: MenuCategory[] = [
         image: "/menu/vodka-tequila/vodka-tequila-selection.webp",
         width: 1024,
         height: 1536,
-        price: 140,
+        price: 120,
         priceFrom: true,
+        pours: [
+          { name: "Zubrówka", volume: "50 мл", price: 120 },
+          { name: "Finlandia", volume: "50 мл", price: 130 },
+          { name: "Absolut Mandrin", volume: "50 мл", price: 140 },
+          { name: "True Tequila Silver", volume: "50 мл", price: 160 },
+          { name: "True Tequila Gold", volume: "50 мл", price: 180 },
+        ],
       },
     ],
   },
@@ -96,8 +122,14 @@ export const menuCategories: MenuCategory[] = [
         image: "/menu/gin/gin-selection.webp",
         width: 1024,
         height: 1536,
-        price: 160,
+        price: 140,
         priceFrom: true,
+        pours: [
+          { name: "Beefeater Blood Orange", volume: "50 мл", price: 160 },
+          { name: "Beefeater", volume: "50 мл", price: 150 },
+          { name: "Gordon's", volume: "50 мл", price: 140 },
+          { name: "Gordon's Tropical Passionfruit", volume: "50 мл", price: 150 },
+        ],
       },
     ],
   },
@@ -111,8 +143,14 @@ export const menuCategories: MenuCategory[] = [
         image: "/menu/liqueurs/liqueurs-selection.webp",
         width: 1023,
         height: 1537,
-        price: 120,
+        price: 110,
         priceFrom: true,
+        pours: [
+          { name: "Jägermeister", volume: "50 мл", price: 110 },
+          { name: "Jägermeister Orange", volume: "50 мл", price: 120 },
+          { name: "Becherovka", volume: "50 мл", price: 110 },
+          { name: "Лікер вишневий", volume: "100 мл", price: 130 },
+        ],
       },
     ],
   },
@@ -126,8 +164,13 @@ export const menuCategories: MenuCategory[] = [
         image: "/menu/rum/rum-selection.webp",
         width: 1024,
         height: 1536,
-        price: 150,
+        price: 130,
         priceFrom: true,
+        pours: [
+          { name: "Bacardi Spiced", volume: "50 мл", price: 140 },
+          { name: "Bacardi Carta Blanca", volume: "50 мл", price: 130 },
+          { name: "Bacardi Carta Negra", volume: "50 мл", price: 150 },
+        ],
       },
     ],
   },
@@ -141,8 +184,13 @@ export const menuCategories: MenuCategory[] = [
         image: "/menu/bourbon-brandy-chacha/bourbon-brandy-chacha-selection.webp",
         width: 1024,
         height: 1535,
-        price: 210,
+        price: 170,
         priceFrom: true,
+        pours: [
+          { name: "Бурбон Jim Beam", volume: "50 мл", price: 170 },
+          { name: "Бренді Fratelli XO", volume: "50 мл", price: 260 },
+          { name: "Чача Iveria Walnut", volume: "50 мл", price: 180 },
+        ],
       },
     ],
   },
@@ -156,8 +204,14 @@ export const menuCategories: MenuCategory[] = [
         image: "/menu/beer/beer-selection.webp",
         width: 1024,
         height: 1536,
-        price: 110,
+        price: 130,
         priceFrom: true,
+        pours: [
+          { name: "Corona Extra", volume: "0,33 л", price: 130 },
+          { name: "Leffe Brune", volume: "0,33 л", price: 150 },
+          { name: "Leffe Blonde", volume: "0,33 л", price: 150 },
+          { name: "Hoegaarden White", volume: "0,33 л", price: 140 },
+        ],
       },
     ],
   },
@@ -165,6 +219,7 @@ export const menuCategories: MenuCategory[] = [
     slug: "snacks",
     title: "Закуски",
     subtitle: "До напоїв · 4 позиції",
+    comingSoon: true,
     items: [
       { title: "Сирні палички", image: "/menu/snacks/cheese-sticks.webp", width: 1023, height: 1537, price: 220 },
       { title: "Картопляні діпи", image: "/menu/snacks/potato-dips.webp", width: 1122, height: 1402, price: 200 },
@@ -176,6 +231,7 @@ export const menuCategories: MenuCategory[] = [
     slug: "burgers",
     title: "Бургери",
     subtitle: "Фірмова випічка та м'ясо · 3 позиції",
+    comingSoon: true,
     items: [
       { title: "Бургер яловичий", image: "/menu/burgers/beef-burger.webp", width: 851, height: 1280, price: 340 },
       { title: "Бургер зі свининою", image: "/menu/burgers/pork-burger.webp", width: 1024, height: 1536, price: 310 },

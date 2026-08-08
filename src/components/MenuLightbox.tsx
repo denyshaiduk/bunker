@@ -106,9 +106,22 @@ export function MenuLightbox({ category, index, onIndexChange, onClose }: MenuLi
 
       <div className="px-5 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-3 text-center">
         <h3 className="font-display text-gradient-bronze text-xl">{item.title}</h3>
-        <p className="mt-1.5 inline-block rounded-full border border-bronze-light/50 bg-bunker-900/70 px-3.5 py-1 text-sm font-semibold text-bronze-light">
-          {formatPrice(item)}
-        </p>
+        {item.pours ? (
+          <div className="mx-auto mt-2 flex max-w-md flex-wrap justify-center gap-2">
+            {item.pours.map((pour) => (
+              <span
+                key={pour.name}
+                className="rounded-full border border-bronze-light/40 bg-bunker-900/70 px-3 py-1 text-xs text-bone/80"
+              >
+                {pour.name} · {pour.volume} — <span className="text-bronze-light">{pour.price} ₴</span>
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-1.5 inline-block rounded-full border border-bronze-light/50 bg-bunker-900/70 px-3.5 py-1 text-sm font-semibold text-bronze-light">
+            {formatPrice(item)}
+          </p>
+        )}
       </div>
     </motion.div>
   );
