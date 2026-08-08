@@ -14,10 +14,24 @@ export function MenuSection() {
 
   useEffect(() => {
     if (activeCategory === null) return;
+    const scrollY = window.scrollY;
+    const body = document.body;
     const previousOverflow = document.documentElement.style.overflow;
+    const previousPosition = body.style.position;
+    const previousTop = body.style.top;
+    const previousWidth = body.style.width;
     document.documentElement.style.overflow = "hidden";
+    // iOS Safari ignores overflow:hidden on the background during touch
+    // gestures — pinning the body in place is the only reliable lock there.
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
     return () => {
       document.documentElement.style.overflow = previousOverflow;
+      body.style.position = previousPosition;
+      body.style.top = previousTop;
+      body.style.width = previousWidth;
+      window.scrollTo(0, scrollY);
     };
   }, [activeCategory]);
 
