@@ -48,6 +48,7 @@ export function MenuSection() {
           <Reveal key={category.slug} delay={(i % 3) * 0.08}>
             <MenuCard
               category={category}
+              index={i}
               onOpen={() => {
                 setActiveCategory(i);
                 setActiveItem(null);
