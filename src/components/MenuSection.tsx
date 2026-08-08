@@ -58,19 +58,18 @@ export function MenuSection() {
         ))}
       </div>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {activeCategory !== null && activeItem === null && (
           <MenuCategoryGrid
+            key="grid"
             category={menuCategories[activeCategory]}
             onSelectItem={setActiveItem}
             onClose={() => setActiveCategory(null)}
           />
         )}
-      </AnimatePresence>
-
-      <AnimatePresence>
         {activeCategory !== null && activeItem !== null && (
           <MenuLightbox
+            key="lightbox"
             category={menuCategories[activeCategory]}
             index={activeItem}
             onIndexChange={setActiveItem}
