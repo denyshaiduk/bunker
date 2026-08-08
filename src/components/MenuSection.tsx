@@ -1,97 +1,42 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
-import { menuCategories } from "@/lib/menu-data";
-import { MenuCard } from "./MenuCard";
-import { MenuCategoryGrid } from "./MenuCategoryGrid";
-import { MenuLightbox } from "./MenuLightbox";
+import { withBasePath } from "@/lib/base-path";
 import { Reveal } from "./Reveal";
 
+const MENU_PDF = withBasePath("/bunker-menu.pdf");
+
 export function MenuSection() {
-  const [activeCategory, setActiveCategory] = useState<number | null>(null);
-  const [activeItem, setActiveItem] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (activeCategory === null) return;
-    const scrollY = window.scrollY;
-    const body = document.body;
-    const previousOverflow = document.documentElement.style.overflow;
-    const previousPosition = body.style.position;
-    const previousTop = body.style.top;
-    const previousWidth = body.style.width;
-    document.documentElement.style.overflow = "hidden";
-    // iOS Safari ignores overflow:hidden on the background during touch
-    // gestures — pinning the body in place is the only reliable lock there.
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.width = "100%";
-    return () => {
-      document.documentElement.style.overflow = previousOverflow;
-      body.style.position = previousPosition;
-      body.style.top = previousTop;
-      body.style.width = previousWidth;
-      window.scrollTo(0, scrollY);
-    };
-  }, [activeCategory]);
-
-  useEffect(() => {
-    if (activeCategory === null) return;
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key !== "Escape") return;
-      if (activeItem !== null) setActiveItem(null);
-      else setActiveCategory(null);
-    }
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeCategory, activeItem]);
-
   return (
     <section id="menu" className="relative px-4 py-16 sm:px-6 sm:py-20 md:px-8 md:py-24 lg:py-28">
-      <Reveal className="mx-auto mb-10 max-w-xl text-center sm:mb-12 md:mb-14">
+      <Reveal className="mx-auto mb-8 max-w-xl text-center sm:mb-10">
         <span className="font-body text-[11px] uppercase tracking-[0.5em] text-bronze-light/70">
           Карта бару
         </span>
         <h2 className="font-serif-display text-gradient-bronze mt-3 text-[clamp(2.25rem,7vw,3.75rem)]">
           Меню
         </h2>
+        <a
+          href={MENU_PDF}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="glass-panel mt-5 inline-block rounded-full px-5 py-2 text-xs uppercase tracking-[0.2em] text-bone/80 transition hover:text-white"
+        >
+          Відкрити PDF
+        </a>
       </Reveal>
 
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4 xl:gap-6">
-        {menuCategories.map((category, i) => (
-          <Reveal key={category.slug} delay={(i % 3) * 0.08}>
-            <MenuCard
-              category={category}
-              index={i}
-              onOpen={() => {
-                setActiveCategory(i);
-                setActiveItem(null);
-              }}
-            />
-          </Reveal>
-        ))}
-      </div>
-
-      <AnimatePresence mode="wait">
-        {activeCategory !== null && activeItem === null && (
-          <MenuCategoryGrid
-            key="grid"
-            category={menuCategories[activeCategory]}
-            onSelectItem={setActiveItem}
-            onClose={() => setActiveCategory(null)}
+      <Reveal className="mx-auto max-w-4xl">
+        <div className="bronze-border overflow-hidden rounded-[18px] bg-bunker-900/40">
+          <iframe
+            src={MENU_PDF}
+            title="Меню BUNKER"
+            className="h-[80vh] min-h-[520px] w-full"
+            loading="lazy"
           />
-        )}
-        {activeCategory !== null && activeItem !== null && (
-          <MenuLightbox
-            key="lightbox"
-            category={menuCategories[activeCategory]}
-            index={activeItem}
-            onIndexChange={setActiveItem}
-            onClose={() => setActiveItem(null)}
-          />
-        )}
-      </AnimatePresence>
+        </div>
+      </Reveal>
     </section>
   );
 }
+
 
