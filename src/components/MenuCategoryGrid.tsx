@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { X } from "lucide-react";
+import { Clock, X } from "lucide-react";
 import { withBasePath } from "@/lib/base-path";
 import { formatPrice, type MenuCategory } from "@/lib/menu-data";
 
@@ -53,17 +53,25 @@ export function MenuCategoryGrid({ category, onSelectItem, onClose }: MenuCatego
               <motion.button
                 key={item.image}
                 type="button"
-                onClick={() => onSelectItem(i)}
+                disabled={item.comingSoon}
+                onClick={() => !item.comingSoon && onSelectItem(i)}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: Math.min(i * 0.05, 0.4), ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.96 }}
-                className="group relative pt-5 text-left"
+                whileHover={item.comingSoon ? undefined : { y: -5 }}
+                whileTap={item.comingSoon ? undefined : { scale: 0.96 }}
+                className={`group relative pt-5 text-left ${item.comingSoon ? "cursor-not-allowed opacity-70" : ""}`}
               >
-                <span className="absolute left-1/2 top-0 z-10 -translate-x-1/2 rounded-full border-[1.5px] border-bronze-light/70 bg-gradient-to-b from-[#4a2d13] via-[#2a1808] to-[#150b04] px-4 py-2 text-sm font-semibold tracking-wide text-bronze-light shadow-[0_10px_24px_-8px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,214,158,0.25)] transition-transform duration-500 group-hover:scale-110">
-                  <span className="font-serif-display">{formatPrice(item)}</span>
-                </span>
+                {item.comingSoon ? (
+                  <span className="glass-panel absolute left-1/2 top-0 z-10 -translate-x-1/2 flex items-center gap-1.5 rounded-full px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-bone/80">
+                    <Clock className="h-3 w-3" strokeWidth={1.8} />
+                    Скоро
+                  </span>
+                ) : (
+                  <span className="absolute left-1/2 top-0 z-10 -translate-x-1/2 rounded-full border-[1.5px] border-bronze-light/70 bg-gradient-to-b from-[#4a2d13] via-[#2a1808] to-[#150b04] px-4 py-2 text-sm font-semibold tracking-wide text-bronze-light shadow-[0_10px_24px_-8px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,214,158,0.25)] transition-transform duration-500 group-hover:scale-110">
+                    <span className="font-serif-display">{formatPrice(item)}</span>
+                  </span>
+                )}
 
                 <div className="bronze-border relative w-full overflow-hidden rounded-[18px] bg-bunker-900/60 shadow-[0_16px_40px_-22px_rgba(0,0,0,0.85)] transition-shadow duration-500 group-hover:shadow-[0_20px_55px_-18px_rgba(182,122,43,0.4)]">
                   <div className="relative w-full" style={{ aspectRatio: item.width / item.height }}>
@@ -72,7 +80,9 @@ export function MenuCategoryGrid({ category, onSelectItem, onClose }: MenuCatego
                       alt={item.title}
                       fill
                       sizes="(min-width: 1024px) 22vw, (min-width: 640px) 30vw, 45vw"
-                      className="object-contain p-2 transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      className={`object-contain p-2 transition-transform duration-700 ease-out ${
+                        item.comingSoon ? "grayscale" : "group-hover:scale-[1.04]"
+                      }`}
                     />
                   </div>
                 </div>

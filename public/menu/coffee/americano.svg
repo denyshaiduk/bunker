@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536">
+  <defs>
+    <radialGradient id="bgA" cx="50%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#241a10"/>
+      <stop offset="100%" stop-color="#0c0906"/>
+    </radialGradient>
+    <linearGradient id="cupA" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a2d13"/>
+      <stop offset="100%" stop-color="#170c05"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#bgA)"/>
+  <g opacity="0.5" stroke="#B67A2B" stroke-width="2">
+    <circle cx="512" cy="640" r="230"/>
+    <circle cx="512" cy="640" r="270"/>
+  </g>
+  <g transform="translate(512,700)">
+    <path d="M -170 0 L -150 160 Q -150 210 -100 210 L 100 210 Q 150 210 150 160 L 170 0 Z" fill="url(#cupA)" stroke="#B67A2B" stroke-width="4"/>
+    <ellipse cx="0" cy="0" rx="170" ry="34" fill="#1c110a" stroke="#B67A2B" stroke-width="4"/>
+    <path d="M 165 20 q 90 10 90 70 q 0 65 -85 70" fill="none" stroke="#B67A2B" stroke-width="10"/>
+    <path d="M -60 -70 q 10 -40 -10 -70" fill="none" stroke="#B67A2B" stroke-width="6" opacity="0.7"/>
+    <path d="M 10 -80 q 10 -40 -10 -70" fill="none" stroke="#B67A2B" stroke-width="6" opacity="0.7"/>
+    <path d="M 60 -70 q 10 -40 -10 -70" fill="none" stroke="#B67A2B" stroke-width="6" opacity="0.5"/>
+  </g>
+  <text x="50%" y="1180" text-anchor="middle" font-family="Georgia, serif" font-size="72" fill="#E7C99A" letter-spacing="4">Americano</text>
+  <text x="50%" y="1250" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#B67A2B" opacity="0.7" letter-spacing="6">BUNKER COFFEE</text>
+</svg>

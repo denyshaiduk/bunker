@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536">
+  <defs>
+    <radialGradient id="bgR" cx="50%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#241a10"/>
+      <stop offset="100%" stop-color="#0c0906"/>
+    </radialGradient>
+    <linearGradient id="glassR" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a3a1a" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#170c05" stop-opacity="0.65"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#bgR)"/>
+  <g opacity="0.5" stroke="#B67A2B" stroke-width="2">
+    <circle cx="512" cy="640" r="230"/>
+    <circle cx="512" cy="640" r="270"/>
+  </g>
+  <g transform="translate(512,700)">
+    <path d="M -140 -160 L -160 190 Q -160 220 -125 220 L 125 220 Q 160 220 160 190 L 140 -160 Z" fill="url(#glassR)" stroke="#B67A2B" stroke-width="4"/>
+    <rect x="-158" y="-10" width="316" height="170" fill="#8a5a2a" opacity="0.9"/>
+    <ellipse cx="0" cy="-10" rx="158" ry="18" fill="#e7d3a8"/>
+    <ellipse cx="0" cy="-160" rx="140" ry="16" fill="none" stroke="#B67A2B" stroke-width="4"/>
+    <line x1="-140" y1="-160" x2="-160" y2="190" stroke="#B67A2B" stroke-width="2" opacity="0.4"/>
+    <line x1="140" y1="-160" x2="160" y2="190" stroke="#B67A2B" stroke-width="2" opacity="0.4"/>
+  </g>
+  <text x="50%" y="1180" text-anchor="middle" font-family="Georgia, serif" font-size="72" fill="#E7C99A" letter-spacing="4">Raf</text>
+  <text x="50%" y="1250" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#B67A2B" opacity="0.7" letter-spacing="6">BUNKER COFFEE</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536">
+  <defs>
+    <radialGradient id="bgL" cx="50%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#241a10"/>
+      <stop offset="100%" stop-color="#0c0906"/>
+    </radialGradient>
+    <linearGradient id="glassL" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a2a1a" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#170c05" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#bgL)"/>
+  <g opacity="0.5" stroke="#B67A2B" stroke-width="2">
+    <circle cx="512" cy="640" r="230"/>
+    <circle cx="512" cy="640" r="270"/>
+  </g>
+  <g transform="translate(512,690)">
+    <path d="M -110 -180 L -125 190 Q -125 220 -95 220 L 95 220 Q 125 220 125 190 L 110 -180 Z" fill="url(#glassL)" stroke="#B67A2B" stroke-width="4"/>
+    <rect x="-121" y="40" width="242" height="120" fill="#6b4321" opacity="0.85"/>
+    <ellipse cx="0" cy="40" rx="121" ry="14" fill="#c9a468"/>
+    <ellipse cx="0" cy="-180" rx="110" ry="16" fill="none" stroke="#B67A2B" stroke-width="4"/>
+  </g>
+  <text x="50%" y="1180" text-anchor="middle" font-family="Georgia, serif" font-size="72" fill="#E7C99A" letter-spacing="4">Latte</text>
+  <text x="50%" y="1250" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#B67A2B" opacity="0.7" letter-spacing="6">BUNKER COFFEE</text>
+</svg>

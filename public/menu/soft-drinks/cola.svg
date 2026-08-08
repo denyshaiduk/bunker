@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536">
+  <defs>
+    <radialGradient id="bgCo" cx="50%" cy="28%" r="85%">
+      <stop offset="0%" stop-color="#201812"/>
+      <stop offset="100%" stop-color="#0c0906"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1536" fill="url(#bgCo)"/>
+  <g opacity="0.5" stroke="#B67A2B" stroke-width="2">
+    <circle cx="512" cy="640" r="230"/>
+    <circle cx="512" cy="640" r="270"/>
+  </g>
+  <g transform="translate(512,700)">
+    <path d="M -130 -200 L -150 200 Q -150 230 -115 230 L 115 230 Q 150 230 150 200 L 130 -200 Z" fill="#170c05" stroke="#B67A2B" stroke-width="4"/>
+    <path d="M -140 -60 L -147 200 Q -147 218 -117 218 L 117 218 Q 147 218 147 200 L 140 -60 Z" fill="#2a1508" opacity="0.9"/>
+    <ellipse cx="0" cy="-200" rx="130" ry="16" fill="none" stroke="#B67A2B" stroke-width="4"/>
+    <circle cx="-50" cy="-30" r="22" fill="#4a3018" opacity="0.6"/>
+    <circle cx="40" cy="20" r="18" fill="#4a3018" opacity="0.5"/>
+  </g>
+  <text x="50%" y="1180" text-anchor="middle" font-family="Georgia, serif" font-size="68" fill="#E7C99A" letter-spacing="3">Cola</text>
+  <text x="50%" y="1250" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#B67A2B" opacity="0.7" letter-spacing="6">BUNKER SOFT</text>
+</svg>

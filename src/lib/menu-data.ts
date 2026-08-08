@@ -20,6 +20,8 @@ export interface MenuItem {
   priceFrom?: boolean;
   /** Per-brand pours shown on a selection artboard, each with its own price */
   pours?: Pour[];
+  /** This specific item isn't served yet — shown greyed out with a "coming soon" badge */
+  comingSoon?: boolean;
 }
 
 export interface MenuCategory {
@@ -40,7 +42,9 @@ export function formatPrice(item: Pick<MenuItem, "price" | "priceFrom">) {
 }
 
 export function categoryMinPrice(category: MenuCategory) {
-  return Math.min(...category.items.map((item) => item.price));
+  const available = category.items.filter((item) => !item.comingSoon);
+  const prices = (available.length > 0 ? available : category.items).map((item) => item.price);
+  return Math.min(...prices);
 }
 
 // All artwork below is the real, final designer menu supplied by the bar
@@ -197,7 +201,7 @@ export const menuCategories: MenuCategory[] = [
   {
     slug: "beer",
     title: "Пиво",
-    subtitle: "Corona Extra · Leffe Brune · Leffe Blonde · Hoegaarden White",
+    subtitle: "Corona Extra · Carlsberg · Leffe Brune · Leffe Blonde · Hoegaarden White",
     items: [
       {
         title: "Бункерний хміль",
@@ -208,11 +212,44 @@ export const menuCategories: MenuCategory[] = [
         priceFrom: true,
         pours: [
           { name: "Corona Extra", volume: "0,33 л", price: 130 },
+          { name: "Carlsberg", volume: "0,5 л", price: 140 },
           { name: "Leffe Brune", volume: "0,33 л", price: 150 },
           { name: "Leffe Blonde", volume: "0,33 л", price: 150 },
           { name: "Hoegaarden White", volume: "0,33 л", price: 130 },
         ],
       },
+    ],
+  },
+  {
+    slug: "coffee",
+    title: "Кава",
+    subtitle: "Американо · Еспресо",
+    items: [
+      { title: "Американо", image: "/menu/coffee/americano.svg", width: 1024, height: 1536, price: 80 },
+      { title: "Еспресо", image: "/menu/coffee/espresso.svg", width: 1024, height: 1536, price: 70 },
+      { title: "Капучино", image: "/menu/coffee/cappuccino.svg", width: 1024, height: 1536, price: 100, comingSoon: true },
+      { title: "Латте", image: "/menu/coffee/latte.svg", width: 1024, height: 1536, price: 110, comingSoon: true },
+      { title: "Раф", image: "/menu/coffee/raf.svg", width: 1024, height: 1536, price: 140, comingSoon: true },
+    ],
+  },
+  {
+    slug: "soft-drinks",
+    title: "Безалкогольні напої",
+    subtitle: "Кола 0,25 л / 0,3 л · Спрайт 0,3 л",
+    items: [
+      {
+        title: "Кола",
+        image: "/menu/soft-drinks/cola.svg",
+        width: 1024,
+        height: 1536,
+        price: 60,
+        priceFrom: true,
+        pours: [
+          { name: "Кола", volume: "0,25 л", price: 60 },
+          { name: "Кола", volume: "0,3 л", price: 70 },
+        ],
+      },
+      { title: "Спрайт", image: "/menu/soft-drinks/sprite.svg", width: 1024, height: 1536, price: 70 },
     ],
   },
   {
