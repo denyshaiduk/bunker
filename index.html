@@ -2,6 +2,7 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BUNKER — меню</title>
 <style>
   * { box-sizing: border-box; }
@@ -13,6 +14,9 @@
     color: #f2ead9;
   }
   .sheet { max-width: 900px; margin: 0 auto; padding: 28px 24px 48px; }
+  @media (max-width: 480px) {
+    .sheet { padding: 20px 14px 32px; }
+  }
   h1.title {
     text-align: center;
     font-size: 34pt;
@@ -53,21 +57,37 @@
   .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
   .item-name { font-size: 13pt; color: #f2ead9; }
   .item-price { font-size: 13pt; font-weight: bold; color: #e7c99a; white-space: nowrap; }
-  .cocktail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .cocktail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
   .cocktail-grid .item {
     display: block;
     text-align: center;
     background: rgba(182,122,43,0.06);
     border: 1px solid rgba(182,122,43,0.3);
-    border-radius: 14px;
-    padding: 12px 10px 14px;
+    border-radius: 16px;
+    padding: 10px 10px 14px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .cocktail-grid .item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(231,201,154,0.7);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
   }
   .cocktail-grid .item-row { display: block; }
   .cocktail-grid .item-thumb {
+    display: block;
     width: 100%;
-    height: 130px;
-    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    border-radius: 12px;
     margin-bottom: 10px;
+    object-fit: cover;
+    border: 1px solid rgba(182,122,43,0.5);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
   }
   .cocktail-grid .item-body { display: block; }
   .cocktail-grid .item-head { display: block; }
@@ -81,6 +101,16 @@
     display: block;
     margin-top: 4px;
     font-size: 14pt;
+  }
+  @media (max-width: 640px) {
+    .cocktail-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .cocktail-grid .item-name { font-size: 12pt; }
+  }
+  @media (max-width: 380px) {
+    .cocktail-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .cocktail-grid { grid-template-columns: repeat(3, 1fr); }
   }
   .soon { color: #8a7f68; }
   .soon .item-price { color: #8a7f68; }
