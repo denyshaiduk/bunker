@@ -103,6 +103,32 @@
     margin-top: 4px;
     font-size: 14pt;
   }
+  .cocktail-recipe {
+    margin-top: 10px;
+    text-align: left;
+  }
+  .cocktail-recipe summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #e7c99a;
+    font-size: 9pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    list-style: none;
+    border-bottom: 1px solid rgba(231,201,154,0.55);
+    padding-bottom: 2px;
+  }
+  .cocktail-recipe summary::-webkit-details-marker { display: none; }
+  .cocktail-recipe summary::before { content: "+"; font-size: 13pt; line-height: 0.8; }
+  .cocktail-recipe[open] summary::before { content: "−"; }
+  .cocktail-recipe p {
+    margin: 8px 0 0;
+    color: #cfc1a7;
+    font-size: 9.5pt;
+    line-height: 1.45;
+  }
   @media (max-width: 640px) {
     .cocktail-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .cocktail-grid .item-name { font-size: 12pt; }
@@ -276,7 +302,6 @@
   <div class="item"><div class="item-head"><span class="item-name">Кола · 0,3 л</span><span class="item-price">70 ₴</span></div></div>
   <div class="item"><div class="item-head"><span class="item-name">Спрайт · 0,25 л</span><span class="item-price">70 ₴</span></div></div>
   <div class="item"><div class="item-head"><span class="item-name">Сік в асортименті · 0,2 л</span><span class="item-price">70 ₴</span></div></div>
-  <div class="item"><div class="item-head"><span class="item-name">Сік в асортименті · 0,3 л<span class="badge-new">New</span></span><span class="item-price">80 ₴</span></div></div>
   <div class="item"><div class="item-head"><span class="item-name">Мохіто безалкогольне</span><span class="item-price">110 ₴</span></div></div>
   <div class="item"><div class="item-head"><span class="item-name">Мохіто полуничне безалкогольне</span><span class="item-price">110 ₴</span></div></div>
 
@@ -307,5 +332,35 @@
   <div class="flourish">✦ ✦ ✦</div>
   <div class="footer">BUNKER · Одеса</div>
 </div>
+<script>
+  const cocktailRecipes = {
+    "Блакитна лагуна": "Горілка, Блю Кюрасао, Sprite, лимон, лід.",
+    "Espresso Martini": "Горілка, кавовий лікер, еспресо, цукровий сироп, лід.",
+    "Tequila Sunrise": "Текіла, апельсиновий сік, гренадин, лайм, лід.",
+    "Whisky-Cola": "Віскі, Coca-Cola, лід.",
+    "Mojito": "Білий ром, тростинний цукор, м'ята, лайм, содова, лід.",
+    "Strawberry Mojito": "Білий ром, полуниця, м'ята, лайм, содова, лід.",
+    "Gin-Tonik": "Джин, тонік, лайм, лід.",
+    "Negroni": "Джин, червоний вермут, Campari, апельсин, лід.",
+    "Godfather": "Віскі, Amaretto, апельсин, лід.",
+    "Manhattan": "Бурбон, червоний вермут, біттер, вишня, лід.",
+    "Daiquiri": "Білий ром, тростинний цукор, лаймовий сік, лід.",
+    "Aperol Spritz": "Aperol, просекко, содова, апельсин, лід.",
+    "Mint Julep": "Бурбон, м'ята, цукор, лід.",
+    "Boulevardier": "Бурбон, Campari, червоний вермут, апельсин, лід.",
+    "Old Fashioned": "Бурбон, біттер, тростинний цукор, апельсин, лід."
+  };
+
+  document.querySelectorAll(".cocktail-grid .item").forEach((cocktail) => {
+    const name = cocktail.querySelector(".item-name")?.textContent.trim();
+    const recipe = cocktailRecipes[name];
+    if (!recipe) return;
+
+    const details = document.createElement("details");
+    details.className = "cocktail-recipe";
+    details.innerHTML = `<summary>Склад</summary><p>${recipe}</p>`;
+    cocktail.append(details);
+  });
+</script>
 </body>
 </html>
